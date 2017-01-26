@@ -1,0 +1,27 @@
+package threadname;
+
+class MyThread implements Runnable{
+
+    @Override
+    public void run() {
+        System.out.println("Stampa nome Thread: "+ Thread.currentThread().getName());
+        System.out.println("Stato Thread: "+ Thread.currentThread().getState());
+    }
+}
+
+public class ThreadName {
+    public static void main(String[] args) {
+        
+        System.out.println("Stampa nome Thread: "+ Thread.currentThread().getName());
+        Thread thread = new Thread(new MyThread(), "Second thread");
+        System.out.println("Stato Thread: "+ thread.getState());
+        
+        thread.start();
+        
+        try{
+            thread.join();
+            }catch(Exception e){}
+        System.out.println("Stato Thread: "+ thread.getState());
+        
+    }
+}
